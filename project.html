@@ -27,12 +27,16 @@
         }
 
         body {
-            opacity: 0;
+            opacity: 1;
             transition: opacity 0.35s ease;
         }
 
         body.loaded {
             opacity: 1;
+        }
+
+        body.page-out {
+            opacity: 0;
         }
 
         .container {
@@ -111,7 +115,7 @@
 
         <div class="viewer">
             <div class="slide-wrap" id="slideWrap">
-                <iframe id="slideFrame" src="" allowfullscreen></iframe>
+                <iframe id="slideFrame" src="" title="Project presentation viewer" loading="lazy" allowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -120,57 +124,57 @@
         const data = {
             bumper: {
                 title: 'Automotive Front Bumper Fascia',
-                desc: 'Complete plastic component design from Class-A surfaces to a closed volume with defined clearances.',
+                desc: 'Front bumper fascia workflow from Class-A surface refinement through closed-volume development and clearance validation.',
                 slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/Front%20Bumper%20%20Design%20Report.pptx&embedded=true'
             },
            bpillar: {
                 title: 'Automotive B-Pillar Trim Design',
-                desc: 'Comprehensive plastic component design including A, B, and C surface development, detailed B-side attachment features, and environmental packaging with surrounding parts.',
+                desc: 'A-, B-, and C-surface development for an automotive trim component, including B-side attachment features and surrounding-part packaging.',
                 slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/B_PILLER.pptx&embedded=true'
             },
              cupholder: {
                 title: 'Automotive Cup Holder Trim Design',
-                desc: 'Comprehensive plastic component design including A, B, and C surface development, detailed B-side attachment features, and environmental packaging with surrounding parts.',
+                desc: 'Automotive cup-holder trim developed through surface refinement, attachment-feature detailing, and packaging with surrounding vehicle parts.',
                 slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/CUP_HOLDER.pptx&embedded=true'
             },
             air: {
                 title: 'Airbag Cover Design',
-                desc: 'Complete plastic component design from Class-A surfaces to a closed volume with defined clearance lines.',
+                desc: 'Airbag-cover workflow focused on Class-A surface development, closed-volume creation, and clearance-line definition.',
                 slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/Airbag%20Cover%20Design%20Report.pptx&embedded=true'
             },
             feature: {
                 title: 'B Surface Features Report',
-                desc: 'Complete plastic component design from Class-A surfaces to a closed volume with defined clearance lines.',
+                desc: 'B-side feature development including clip towers and supporting geometry for a plastic automotive component.',
                 slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/Clip_Tower.pptx&embedded=true'
             },
             fbcov: {
                 title: 'Fuse Box Cover Design Report',
-                desc: 'Complete plastic component design from Class-A surfaces to a closed volume with defined clearance lines.',
+                desc: 'Fuse-box cover component developed from Class-A surfaces through closed volume with clearance and attachment details.',
                 slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/Fuseboxcov.pptx&embedded=true'
             },
             centralbezel: {
                 title: 'Center Bezel Design Report',
-                desc: 'Complete plastic component design from Class-A surfaces to a closed volume with defined clearance lines.',
+                desc: 'Center bezel trim developed from surface inputs into a closed volume with defined clearance and attachment details.',
                 slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/Center%20Bezel%20Design%20Report.pptx&embedded=true'
             },
             ac: {
                 title: 'AC Front Control Panel Design Report',
-                desc: 'Complete plastic component design from Class-A surfaces to a closed volume with defined clearance lines.',
+                desc: 'AC front control panel designed as a plastic trim component with surface development, closed-volume construction, and clearance definition.',
                 slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/AC%20Front%20Control%20Panel%20Design%20Report.pptx&embedded=true'
             },
             autoswitch: {
                 title: 'Auto Switch Design Report',
-                desc: 'Complete plastic component design from Class-A surfaces to a closed volume with defined clearance lines.',
+                desc: 'Auto-switch component modeled from Class-A surfaces through closed volume with defined clearance lines and supporting details.',
                 slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/Auto%20Switch%20Design%20Report.pptx&embedded=true'
             },
             central: {
-                title: 'Center Bezel Design Report',
-                desc: 'Complete plastic component design from Class-A surfaces to a closed volume with defined clearance lines.',
-                slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/Automotive%20Modeling%20Report.pptx&embedded=true'
+                title: 'Automotive Modeling Report',
+                desc: 'Advanced surfacing and 3D geometric modeling for vehicle components and body panels using a structured automotive design workflow.',
+                slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/modeling.pptx&embedded=true'
             },
             automotive: {
                 title: 'High-Performance Automotive Modeling',
-                desc: 'Advanced surfacing and 3D geometric modeling for vehicle components and body panels.',
+                desc: 'Advanced surfacing and 3D geometric modeling for vehicle components and body panels using a structured automotive design workflow.',
                 slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/modeling.pptx&embedded=true'
             },
             beproject: {
@@ -180,22 +184,22 @@
             },
             sidetrim: {
                 title: 'Seat Recliner Side Trim Design Report',
-                desc: 'Complete plastic component design from Class-A surfaces to a closed volume with defined clearance lines.',
+                desc: 'Seat recliner side trim developed as a plastic component with surface refinement, closed-volume construction, and clearance details.',
                 slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/Seat%20Recliner%20Side%20Trim%20Design%20Report.pptx&embedded=true'
             },
             support: {
                 title: 'Switch Support Design Report',
-                desc: 'Complete plastic component design from Class-A surfaces to a closed volume with defined clearance lines.',
+                desc: 'Plastic switch-support component modeled from surface inputs through closed volume with manufacturing-oriented clearance features.',
                 slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/Switch%20Support%20Design%20Report.pptx&embedded=true'
             },
             fbcover: {
                 title: 'Fuse Box Cover Design Report',
-                desc: 'Complete plastic component design from Class-A surfaces to a closed volume with defined clearance lines.',
+                desc: 'Fuse-box cover component developed from Class-A surfaces through closed volume with clearance and attachment details.',
                 slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/fusebox.pptx&embedded=true'
             },
             thermal: {
                 title: 'Thermal Optimization of Truck Wheel Rim',
-                desc: 'CFD analysis and thermal optimization modeling for improved heat dissipation.',
+                desc: 'CFD-based thermal analysis and wheel-rim optimization focused on improving heat dissipation performance.',
                 slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/tim.pptx&embedded=true'
             }
         };
@@ -207,6 +211,7 @@
 
             document.getElementById('projectTitle').textContent = current.title;
             document.getElementById('projectDesc').textContent = current.desc;
+            document.title = `${current.title} | Devanshu Borase`;
             document.getElementById('slideFrame').src = current.slidesUrl;
         }
 
@@ -217,7 +222,7 @@
 
         document.getElementById('backLink').addEventListener('click', function (e) {
             e.preventDefault();
-            document.body.classList.remove('loaded');
+            document.body.classList.add('page-out');
             setTimeout(() => {
                 window.location.href = this.href;
             }, 250);

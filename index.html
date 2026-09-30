@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Devanshu Portfolio Outline</title>
+  <title>Devanshu Borase | Mechanical Engineer &amp; CAD Designer</title>
+  <meta name="description" content="Portfolio of Devanshu Borase, a mechanical engineer and CAD designer specializing in automotive plastic components, Class A/B/C surface modeling, and CFD analysis.">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { font-family: 'Inter', sans-serif; background-color: #060B14; }
@@ -118,6 +119,7 @@
     section {
       min-height: unset;
       padding: 86px 48px 56px;
+      scroll-margin-top: 104px;
       max-width: 1200px;
       margin: 0 auto;
       display: flex;
@@ -265,6 +267,54 @@
       background: rgba(0, 210, 255, 0.08);
     }
 
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding-top: 4px;
+    }
+
+    .hero-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .hero-action:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-action.primary {
+      color: #ffffff;
+      background: #0066ff;
+      box-shadow: 0 10px 24px rgba(0, 102, 255, 0.2);
+    }
+
+    .hero-action.primary:hover {
+      background: #1a75ff;
+      box-shadow: 0 14px 30px rgba(0, 102, 255, 0.28);
+    }
+
+    .hero-action.secondary {
+      color: #d7deed;
+      background: #111827;
+      border: 1px solid #374151;
+    }
+
+    .hero-action.secondary:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(0, 210, 255, 0.08);
+    }
+
     .skills-grid {
       display: flex;
       flex-wrap: wrap;
@@ -284,7 +334,7 @@
       color: var(--text);
       transition: transform 0.3s ease-out, border-color 0.3s ease-out, box-shadow 0.3s ease-out, color 0.3s ease-out;
       will-change: transform;
-      opacity: 0;
+      opacity: 1;
       cursor: pointer;
     }
 
@@ -312,7 +362,7 @@
       position: relative;
       transition: transform 0.5s ease-out, box-shadow 0.5s ease-out, border-color 0.5s ease-out;
       will-change: transform;
-      opacity: 0;
+      opacity: 1;
       cursor: pointer;
     }
 
@@ -362,7 +412,7 @@
       padding: 42px 28px;
       border-radius: 22px;
       text-align: center;
-      opacity: 0;
+      opacity: 1;
     }
 
     .contact-box h3 {
@@ -423,6 +473,46 @@
 
     #research { padding-top: 92px; }
 
+    .about-name {
+      border: 0;
+      padding: 0;
+      margin: 0;
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 1.05;
+    }
+
+    .about-role {
+      margin: 0;
+      color: #d1d5db;
+      font-size: clamp(18px, 2vw, 22px);
+      font-weight: 600;
+    }
+
+    .nav-toggle {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .nav-toggle:hover,
+    .nav-toggle:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+      outline: none;
+    }
+
+    .nav-toggle-icon {
+      font-size: 18px;
+      line-height: 1;
+    }
+
     .scroll-progress {
       position: fixed;
       top: 0;
@@ -438,14 +528,36 @@
 
     @media (max-width: 768px) {
       nav {
-        padding: 16px 20px;
-        flex-direction: column;
+        padding: 14px 20px;
+        flex-direction: row;
+        flex-wrap: wrap;
         gap: 12px;
       }
+
+      .nav-toggle { display: inline-flex; }
+
+      nav ul {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 2px;
+        padding: 10px 0 2px;
+        margin: 0;
+      }
+
+      nav.nav-open ul { display: flex; }
+
+      nav ul li a {
+        display: block;
+        padding: 9px 4px;
+      }
+
       section { padding: 86px 20px 46px; }
       #home { padding-top: 96px; }
       h2 { font-size: 30px; }
       .hero-stats { grid-template-columns: 1fr; }
+      .hero-actions { width: 100%; }
+      .hero-action { flex: 1 1 180px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -466,15 +578,20 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
-  <nav>
-    <a href="#home" class="logo">ARVO<span>.</span></a>
-    <ul>
+  <nav aria-label="Primary navigation">
+    <a href="#home" class="logo" aria-label="Devanshu Borase home">ARVO<span>.</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-menu">
+      <span class="nav-toggle-icon" aria-hidden="true">☰</span>
+      <span>Menu</span>
+    </button>
+    <ul id="primary-menu">
       <li><a href="#home">Profile</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#work">Work</a></li>
       <li><a href="#research">Research</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
@@ -501,18 +618,14 @@
             Plastic automotive components, high-performance surface modeling, and CFD optimized mechanical assemblies. Experienced with Siemens NX, CATIA V5, SolidWorks, and PTC Creo.
           </p>
 
-          <div class="flex flex-wrap gap-4 pt-4">
-            <button class="bg-[#0066FF] hover:bg-blue-700 transition px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2">
-              <a href="#work">Projects</a> <span class="text-lg">→</span>
-            </button>
-            <button class="bg-[#111827] hover:bg-gray-800 border border-gray-700 transition px-6 py-3 rounded-full text-sm font-semibold">
-              <a href="https://drive.google.com/file/d/1MkhW1qFgXKOC_J3WjBcL3y-KaZA2jBQr/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-[#00A3FF] text-sm flex items-center gap-2 transition duration-300">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                </svg>
-                Resume PDF
-              </a>
-            </button>
+          <div class="hero-actions">
+            <a class="hero-action primary" href="#work">Projects <span aria-hidden="true">→</span></a>
+            <a class="hero-action secondary" href="https://drive.google.com/file/d/1MkhW1qFgXKOC_J3WjBcL3y-KaZA2jBQr/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+              Resume PDF
+            </a>
           </div>
         </div>
 
@@ -533,7 +646,7 @@
             </div>
             <div class="bg-[#131B2B] p-5 rounded-xl">
               <div class="text-3xl font-bold mb-1">1<span class="text-[#00A3FF]">Paper</span></div>
-              <div class="text-gray-400 text-xs">Published DOI<br>Research</div>
+              <div class="text-gray-400 text-xs">Published<br>Research</div>
             </div>
           </div>
         </div>
@@ -564,10 +677,10 @@
         </div>
 
         <div class="lg:col-span-7">
-          <h1 class="text-6xl md:text-7xl font-bold leading-tight text-white">Devanshu Borase</h1>
+          <h2 class="about-name text-6xl md:text-7xl font-bold leading-tight text-white">Devanshu Borase</h2>
           <div class="flex items-center gap-3 mt-6 mb-6">
             <div class="w-1.5 h-6 bg-[#00A3FF] rounded-sm"></div>
-            <h2 class="border-none p-0 m-0 text-lg md:text-xl text-gray-300 font-semibold">Mechanical Engineering | CAD Designer</h2>
+            <p class="about-role">Mechanical Engineering | CAD Designer</p>
           </div>
           <p class="text-gray-400 text-base md:text-lg leading-relaxed">
             Mechanical Engineering graduate (Class of 2026) with hands-on academic experience in product design and advanced surface modeling. Proficient in creating manufacturing-ready designs using Siemens NX, CATIA, PTC-CREO, and SolidWorks. Experienced in plastic product design, including working with A, B, and C surfaces, trimming, and creating closed volumes with detailed features. Passionate about high-performance automotive engineering and practical problem-solving.
@@ -612,7 +725,7 @@
     <div class="skills-grid">
       <a class="skill-link" href="skill.html?skill=nx">Siemens NX</a>
       <a class="skill-link" href="skill.html?skill=catia">CATIA</a>
-      <a class="skill-link" href="skill.html?skill=features">features</a>
+      <a class="skill-link" href="skill.html?skill=features">B-Surface Features</a>
       <a class="skill-link" href="skill.html?skill=cfd">CFD Analysis</a>
       <a class="skill-link" href="skill.html?skill=surface">Surface Modeling</a>
       <a class="skill-link" href="skill.html?skill=assembly">Assembly Modeling</a>
@@ -628,101 +741,101 @@
     <h2>Selected Projects</h2>
     <div class="work-grid">
       <a class="project-card" href="project.html?name=bpillar">
-        <div class="model-viewer"><img src="ppt/B_PILLER.png" alt="Automotive B-Pillar Trim thumbnail"></div>
+        <div class="model-viewer"><img src="ppt/B_PILLER.png" alt="Automotive B-Pillar Trim thumbnail" loading="lazy" decoding="async"></div>
         <div class="project-info">
           <h3>Automotive B-Pillar Trim Design</h3>
-          <p>Comprehensive plastic component design including A, B, and C surface development, detailed B-side attachment features, and environmental packaging with surrounding parts.</p>
+          <p>A-, B-, and C-surface development for an automotive trim component, including B-side attachment features and surrounding-part packaging.</p>
         </div>
       </a>
       <a class="project-card" href="project.html?name=cupholder">
-        <div class="model-viewer"><img src="ppt/CUP__HOLDER.png" alt="Automotive Cup Holder Trim thumbnail"></div>
+        <div class="model-viewer"><img src="ppt/CUP__HOLDER.png" alt="Automotive Cup Holder Trim thumbnail" loading="lazy" decoding="async"></div>
         <div class="project-info">
           <h3>Automotive Cup Holder Trim Design</h3>
-          <p>Comprehensive plastic component design including A, B, and C surface development, detailed B-side attachment features, and environmental packaging with surrounding parts.</p>
+          <p>Automotive cup-holder trim developed through surface refinement, attachment-feature detailing, and packaging with surrounding vehicle parts.</p>
         </div>
       </a>
       <a class="project-card" href="project.html?name=bumper">
-        <div class="model-viewer"><img src="thumnail/bumper.png" alt="Automotive Front Bumper Fascia thumbnail"></div>
+        <div class="model-viewer"><img src="thumnail/bumper.png" alt="Automotive Front Bumper Fascia thumbnail" loading="lazy" decoding="async"></div>
         <div class="project-info">
           <h3>Automotive Front Bumper Fascia</h3>
-          <p>Complete plastic component design from Class-A surfaces to a closed volume with defined clearance lines.</p>
+          <p>Front bumper fascia workflow from Class-A surface refinement through closed-volume development and clearance validation.</p>
         </div>
       </a>
       <a class="project-card" href="project.html?name=air">
-        <div class="model-viewer"><img src="thumnail/airbag.png" alt="Automotive modeling thumbnail"></div>
+        <div class="model-viewer"><img src="thumnail/airbag.png" alt="Automotive modeling thumbnail" loading="lazy" decoding="async"></div>
         <div class="project-info">
           <h3>Airbag Cover Design</h3>
-          <p>Complete plastic component design from Class-A surfaces to a closed volume with defined clearance lines.</p>
+          <p>Airbag-cover workflow focused on Class-A surface development, closed-volume creation, and clearance-line definition.</p>
         </div>
       </a>
       <a class="project-card" href="project.html?name=support">
-        <div class="model-viewer"><img src="thumnail/switch_support.png" alt="Automotive modeling thumbnail"></div>
+        <div class="model-viewer"><img src="thumnail/switch_support.png" alt="Switch support design thumbnail" loading="lazy" decoding="async"></div>
         <div class="project-info">
           <h3>Switch Support Design</h3>
-          <p>Complete plastic component design from Class-A surfaces to a closed volume with defined clearance lines.</p>
+          <p>Plastic switch-support component modeled from surface inputs through closed volume with manufacturing-oriented clearance features.</p>
         </div>
       </a>
       <a class="project-card" href="project.html?name=sidetrim">
-        <div class="model-viewer"><img src="thumnail/side.png" alt="Automotive modeling thumbnail"></div>
+        <div class="model-viewer"><img src="thumnail/side.png" alt="Seat recliner side trim design thumbnail" loading="lazy" decoding="async"></div>
         <div class="project-info">
           <h3>Seat Recliner Side Trim Design</h3>
-          <p>Complete plastic component design from Class-A surfaces to a closed volume with defined clearance lines.</p>
+          <p>Seat recliner side trim developed as a plastic component with surface refinement, closed-volume construction, and clearance details.</p>
         </div>
       </a>
       <a class="project-card" href="project.html?name=feature">
-        <div class="model-viewer"><img src="thumnail/feature.png" alt="Automotive modeling thumbnail"></div>
+        <div class="model-viewer"><img src="thumnail/feature.png" alt="B-surface features thumbnail" loading="lazy" decoding="async"></div>
         <div class="project-info">
           <h3>B Surface Features</h3>
-          <p>Complete plastic component design from Class-A surfaces to a closed volume with Features.</p>
+          <p>B-side feature development including clip towers and supporting geometry for a plastic automotive component.</p>
         </div>
       </a>
       <a class="project-card" href="project.html?name=fbcover">
-        <div class="model-viewer"><img src="thumnail/fusebox.png" alt="Automotive modeling thumbnail"></div>
+        <div class="model-viewer"><img src="thumnail/fusebox.png" alt="Fuse box cover design thumbnail" loading="lazy" decoding="async"></div>
         <div class="project-info">
           <h3>Fuse Box Cover Design</h3>
-          <p>Complete plastic component design from Class-A surfaces to a closed volume with defined clearance lines.</p>
+          <p>Fuse-box cover component developed from Class-A surfaces through closed volume with clearance and attachment details.</p>
         </div>
       </a>
       <a class="project-card" href="project.html?name=centralbezel">
-        <div class="model-viewer"><img src="thumnail/central.png" alt="Automotive modeling thumbnail"></div>
+        <div class="model-viewer"><img src="thumnail/central.png" alt="Center bezel design thumbnail" loading="lazy" decoding="async"></div>
         <div class="project-info">
           <h3>Center Bezel Design</h3>
-          <p>Complete plastic component design from Class-A surfaces to a closed volume with defined clearance lines.</p>
+          <p>Center bezel trim developed from surface inputs into a closed volume with defined clearance and attachment details.</p>
         </div>
       </a>
       <a class="project-card" href="project.html?name=ac">
-        <div class="model-viewer"><img src="thumnail/ac.png" alt="Automotive modeling thumbnail"></div>
+        <div class="model-viewer"><img src="thumnail/ac.png" alt="AC front control panel design thumbnail" loading="lazy" decoding="async"></div>
         <div class="project-info">
           <h3>AC Front Control Panel Design</h3>
-          <p>Complete plastic component design from Class-A surfaces to a closed volume with defined clearance lines.</p>
+          <p>AC front control panel designed as a plastic trim component with surface development, closed-volume construction, and clearance definition.</p>
         </div>
       </a>
       <a class="project-card" href="project.html?name=autoswitch">
-        <div class="model-viewer"><img src="thumnail/switch.png" alt="Automotive modeling thumbnail"></div>
+        <div class="model-viewer"><img src="thumnail/switch.png" alt="Auto switch design thumbnail" loading="lazy" decoding="async"></div>
         <div class="project-info">
           <h3>Auto Switch Design</h3>
-          <p>Complete plastic component design from Class-A surfaces to a closed volume with defined clearance lines.</p>
+          <p>Auto-switch component modeled from Class-A surfaces through closed volume with defined clearance lines and supporting details.</p>
         </div>
       </a>
       <a class="project-card" href="project.html?name=automotive">
-        <div class="model-viewer"><img src="SURFACE DESIGN/Screenshot 2026-05-02 022658.png" alt="Automotive modeling thumbnail"></div>
+        <div class="model-viewer"><img src="SURFACE DESIGN/Screenshot 2026-05-02 022658.png" alt="High-performance automotive modeling thumbnail" loading="lazy" decoding="async"></div>
         <div class="project-info">
           <h3>High-Performance Automotive Modeling</h3>
-          <p>Advanced surfacing and 3D geometric modeling for vehicle components and body panels.</p>
+          <p>Advanced surfacing and 3D geometric modeling for vehicle components and body panels using a structured automotive design workflow.</p>
         </div>
       </a>
       <a class="project-card" href="project.html?name=beproject">
-        <div class="model-viewer"><img src="thumnail/Screenshot 2026-04-18 161628.png" alt="Automotive modeling thumbnail"></div>
+        <div class="model-viewer"><img src="thumnail/Screenshot 2026-04-18 161628.png" alt="Pneumatic CNC bed cleaning mechanism thumbnail" loading="lazy" decoding="async"></div>
         <div class="project-info">
           <h3>BE Project- Pneumatic Slag Removal Mechanism for CNC System</h3>
           <p>Detailed 3D CAD modeling of a pneumatic blade system, showcasing the mechanical linkages and assembly for CNC bed maintenance.</p>
         </div>
       </a>
       <a class="project-card" href="project.html?name=thermal">
-        <div class="model-viewer"><img src="thumnail/rim.png" alt="Truck wheel rim thumbnail"></div>
+        <div class="model-viewer"><img src="thumnail/rim.png" alt="Truck wheel rim thumbnail" loading="lazy" decoding="async"></div>
         <div class="project-info">
           <h3>Thermal Optimization of Truck Wheel Rim</h3>
-          <p>CFD analysis and thermal optimization modeling for improved heat dissipation.</p>
+          <p>CFD-based thermal analysis and wheel-rim optimization focused on improving heat dissipation performance.</p>
         </div>
       </a>
     </div>
@@ -732,18 +845,51 @@
     <h2>Research Paper</h2>
     <div class="paper-grid">
       <article class="paper-card reveal">
-        <h3>Title of Research Paper</h3>
-        <div class="meta">Author • DEVANSHU BORASE • Year- 2026</div>
-        <p>Pneumatic Scraper Blade for CNC Laser-Bed Cleaning</p>
+        <h3>Pneumatic Scraper Blade for CNC Laser-Bed Cleaning</h3>
+        <div class="meta">Published research • Devanshu Borase • 2026</div>
+        <p>Design and development of a pneumatic blade mechanism for automated CNC laser-bed cleaning.</p>
         <div class="paper-actions">
           <a class="paper-btn" href="https://drive.google.com/file/d/1aHt1VHJZCTzwfykUbp53z5E3_RODX_29/view?usp=sharing" target="_blank" rel="noopener noreferrer">PDF</a>
-          <a class="paper-btn" href="https://adypsoe.in/adypjiet/assets/publications/2026/june/ADYPJIET_6_June_2026.pdf" target="_blank" rel="noopener noreferrer">DOI / Link</a>
+          <a class="paper-btn" href="https://adypsoe.in/adypjiet/assets/publications/2026/june/ADYPJIET_6_June_2026.pdf" target="_blank" rel="noopener noreferrer">Publication Link</a>
         </div>
       </article>
     </div>
   </section>
 
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact-box glass-card">
+      <h3>Have a product design or automotive CAD project in mind?</h3>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:borasedevanshu@gmail.com">borasedevanshu@gmail.com</a>
+        <a class="contact-link" href="https://www.linkedin.com/in/devanshu-borase" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+      </div>
+      <a class="resume-btn" href="https://drive.google.com/file/d/1MkhW1qFgXKOC_J3WjBcL3y-KaZA2jBQr/view?usp=sharing" target="_blank" rel="noopener noreferrer">View Resume</a>
+    </div>
+  </section>
+
   <script>
+    const nav = document.querySelector('nav');
+    const navToggle = document.querySelector('.nav-toggle');
+    const mobileNavLinks = document.querySelectorAll('nav ul a');
+
+    function closeMobileNav() {
+      if (!nav || !navToggle) return;
+      nav.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    navToggle?.addEventListener('click', () => {
+      const open = nav.classList.toggle('nav-open');
+      navToggle.setAttribute('aria-expanded', String(open));
+    });
+
+    mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileNav));
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeMobileNav();
+    });
+
     document.querySelectorAll('a.project-card').forEach(link => {
       link.addEventListener('click', function (e) {
         e.preventDefault();
@@ -897,11 +1043,11 @@
         delay: 0.3
       });
 
-      const navLinks = document.querySelectorAll('nav ul li a');
+      const sectionNavLinks = document.querySelectorAll('nav ul li a');
       const sections = document.querySelectorAll('section[id]');
 
       function setActiveLink(id) {
-        navLinks.forEach(link => {
+        sectionNavLinks.forEach(link => {
           link.classList.toggle('active', link.getAttribute('href') === '#' + id);
         });
       }
@@ -943,7 +1089,7 @@
           Resume PDF
         </a>
 
-        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="w-10 h-10 ml-4 rounded-full border border-[#00A3FF]/30 bg-[#060B14] flex items-center justify-center text-[#00A3FF] hover:bg-[#00A3FF]/10 transition duration-300">
+        <button type="button" aria-label="Back to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="w-10 h-10 ml-4 rounded-full border border-[#00A3FF]/30 bg-[#060B14] flex items-center justify-center text-[#00A3FF] hover:bg-[#00A3FF]/10 transition duration-300">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
           </svg>

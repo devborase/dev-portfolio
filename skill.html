@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skill Gallery</title>
+    <title>Skills | Devanshu Borase</title>
+    <meta name="description" content="CAD and mechanical engineering skill galleries for Devanshu Borase.">
     <style>
         html, body {
             margin: 0;
@@ -17,8 +18,8 @@
         body {
             font-family: Arial, sans-serif;
             color: white;
-            opacity: 0;
-            transform: scale(0.985);
+            opacity: 1;
+            transform: scale(1);
             transition: opacity 0.45s ease, transform 0.45s ease;
         }
 
@@ -99,6 +100,23 @@
             color: #b0b8d4;
         }
 
+        .empty-state {
+            grid-column: 1 / -1;
+            padding: 36px 24px;
+            text-align: center;
+            color: #b0b8d4;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+        }
+
+        .empty-state strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #f7f9ff;
+            font-size: 18px;
+        }
+
         @keyframes cardIn {
             to {
                 transform: translateY(0);
@@ -126,7 +144,7 @@
             solidworks: {
                 title: 'SolidWorks',
                 desc: 'Gallery for SolidWorks design files and photos.',
-                images: ['images/solidworks/1.jpg', 'images/solidworks/2.jpg', 'images/solidworks/3.jpg']
+                images: []
             },
             catia: {
                 title: 'CATIA',
@@ -134,14 +152,14 @@
                 images: ['REMODELING_/Screenshot 2026-07-10 185052.png', 'REMODELING_/Screenshot 2026-07-10 233751.png', 'REMODELING_/Screenshot 2026-07-13 001210.png']
             },
             features: {
-                title: 'features',
+                title: 'B-Surface Features',
                 desc: 'Gallery for B_Surface_features design files and photos.',
                 images: ['FEATURE_CLIP_TOWER/Screenshot 2026-07-03 175345.png','ppt/DHF.png']
             },
             creo: {
                 title: 'PTC Creo',
                 desc: 'Gallery for Creo design files and photos.',
-                images: ['images/creo/1.jpg', 'images/creo/2.jpg', 'images/creo/3.jpg']
+                images: []
             },
             cfd: {
                 title: 'CFD Analysis',
@@ -156,17 +174,17 @@
             tooling: {
                 title: 'Tooling Feasibility',
                 desc: 'Gallery for tooling feasibility photos and documents.',
-                images: ['images/tooling/1.jpg', 'images/tooling/2.jpg', 'images/tooling/3.jpg']
+                images: []
             },
             cavity: {
                 title: 'Core & Cavity Extraction',
                 desc: 'Gallery for core and cavity extraction files and photos.',
-                images: ['images/cavity/1.jpg', 'images/cavity/2.jpg', 'images/cavity/3.jpg']
+                images: []
             },
             gdt: {
                 title: 'GD&T',
                 desc: 'Gallery for GD&T drawings and photos.',
-                images: ['images/gdt/1.jpg', 'images/gdt/2.jpg', 'images/gdt/3.jpg']
+                images: []
             },
             assembly: {
                 title: 'Assembly Modeling',
@@ -182,12 +200,24 @@
 
             document.getElementById('skillTitle').textContent = current.title;
             document.getElementById('skillDesc').textContent = current.desc;
+            document.title = `${current.title} | Devanshu Borase`;
 
             const gallery = document.getElementById('gallery');
+
+            if (!current.images.length) {
+                gallery.innerHTML = `
+                    <div class="empty-state">
+                        <strong>Gallery coming soon</strong>
+                        <span>Images and supporting examples for ${current.title} will be added here.</span>
+                    </div>
+                `;
+                return;
+            }
+
             gallery.innerHTML = current.images.map((src, i) => `
                 <div class="photo" style="animation-delay:${i * 0.08}s">
-                    <img src="${src}" alt="${current.title} ${i + 1}">
-                    <div class="caption">${current.title} photo ${i + 1}</div>
+                    <img src="${src}" alt="${current.title} example ${i + 1}" loading="lazy" decoding="async">
+                    <div class="caption">${current.title} example ${i + 1}</div>
                 </div>
             `).join('');
         }
