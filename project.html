@@ -1,277 +1,170 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Presentation</title>
-    <style>
-        :root {
-            --bg: #050816;
-            --bg-2: #0b1020;
-            --card: rgba(15, 20, 38, 0.9);
-            --border: rgba(255, 255, 255, 0.08);
-            --text: #f7f9ff;
-            --muted: #b0b8d4;
-            --accent: #00d2ff;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07101d">
+  <title>Project case study | Devanshu Borase</title>
+  <style>
+    :root { --ink:#0b1220; --muted:#64748b; --paper:#f5f8fb; --white:#fff; --line:#dbe4ec; --dark:#07101d; --dark-2:#0d1c31; --cyan:#18c6e8; --blue:#2476ff; --violet:#8066ff; --max:1180px; --shadow:0 24px 70px rgba(20,42,72,.12); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--paper); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; line-height:1.6; }
+    a { color:inherit; }
+    img { max-width:100%; }
+    section { scroll-margin-top:85px; }
+    .progress { position:fixed; inset:0 0 auto; z-index:20; height:3px; width:0; background:linear-gradient(90deg,var(--cyan),var(--violet),#ff7d75); }
+    .case-nav { position:fixed; top:0; left:0; right:0; z-index:10; border-bottom:1px solid rgba(255,255,255,.09); color:#effaff; background:rgba(7,16,29,.8); backdrop-filter:blur(18px); }
+    .nav-inner { width:min(100% - 42px,var(--max)); min-height:72px; margin:auto; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .brand { display:inline-flex; align-items:center; gap:10px; text-decoration:none; }
+    .brand-mark { width:34px; height:34px; display:grid; place-items:center; border:1px solid rgba(24,198,232,.5); border-radius:10px; color:var(--cyan); font-size:12px; font-weight:900; }
+    .brand-copy { color:#f3f9ff; font-size:12px; font-weight:900; letter-spacing:.1em; text-transform:uppercase; }
+    .back-link { display:inline-flex; align-items:center; gap:8px; color:#9db0c5; font-size:12px; font-weight:800; text-decoration:none; }
+    .back-link:hover { color:var(--cyan); }
+    .case-hero { position:relative; overflow:hidden; padding:150px 24px 90px; color:#f4fbff; background:radial-gradient(circle at 77% 25%,rgba(128,102,255,.2),transparent 28%),radial-gradient(circle at 15% 50%,rgba(24,198,232,.14),transparent 29%),linear-gradient(135deg,var(--dark),var(--dark-2)); }
+    .case-hero::before { content:""; position:absolute; inset:0; opacity:.07; background-image:linear-gradient(rgba(255,255,255,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.4) 1px,transparent 1px); background-size:60px 60px; }
+    .hero-inner { position:relative; z-index:1; width:min(100%,var(--max)); margin:auto; }
+    .breadcrumb { margin:0 0 20px; color:var(--cyan); font-size:11px; font-weight:900; letter-spacing:.15em; text-transform:uppercase; }
+    .hero-grid { display:grid; grid-template-columns:1fr .72fr; gap:70px; align-items:center; }
+    h1 { max-width:800px; margin:0; font-size:clamp(43px,7vw,86px); letter-spacing:-.075em; line-height:.98; }
+    .hero-summary { max-width:680px; margin:23px 0 0; color:#b2c2d5; font-size:18px; line-height:1.65; }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:11px; margin-top:31px; }
+    .button { display:inline-flex; align-items:center; gap:9px; min-height:46px; padding:11px 17px; border:1px solid transparent; border-radius:999px; font-size:12px; font-weight:900; text-decoration:none; transition:.25s ease; }
+    .button:hover { transform:translateY(-3px); }
+    .button-primary { color:#04111a; background:var(--cyan); box-shadow:0 12px 30px rgba(24,198,232,.2); }
+    .button-primary:hover { background:#69e6f8; }
+    .button-ghost { color:#e4effb; border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.05); }
+    .button-ghost:hover { border-color:var(--cyan); background:rgba(24,198,232,.1); }
+    .hero-facts { display:flex; flex-wrap:wrap; gap:9px; margin-top:29px; }
+    .hero-fact { padding:8px 11px; border:1px solid rgba(255,255,255,.14); border-radius:999px; color:#adc0d4; background:rgba(255,255,255,.05); font-size:10px; font-weight:800; }
+    .hero-media { position:relative; aspect-ratio:1.14; overflow:hidden; border:1px solid rgba(255,255,255,.19); border-radius:24px; background:linear-gradient(135deg,#122e47,#2b295a); box-shadow:0 25px 65px rgba(0,0,0,.28); }
+    .hero-media::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 55%,rgba(4,15,29,.72)); }
+    .hero-media img { width:100%; height:100%; display:block; object-fit:cover; }
+    .media-caption { position:absolute; left:22px; right:22px; bottom:19px; z-index:1; display:flex; align-items:end; justify-content:space-between; gap:10px; }
+    .media-caption span { color:#8ea8c1; font-size:10px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; }
+    .media-caption strong { display:block; margin-top:4px; color:#f2fbff; font-size:15px; }
+    .media-caption b { color:var(--cyan); font-size:28px; letter-spacing:-.06em; }
 
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            min-height: 100%;
-            overflow-x: hidden;
-            background: linear-gradient(180deg, var(--bg), var(--bg-2));
-            font-family: Arial, sans-serif;
-            color: var(--text);
-        }
+    .content { padding:92px 24px 0; }
+    .content-inner { width:min(100%,var(--max)); margin:auto; }
+    .section-label { margin:0 0 12px; color:#2185a9; font-size:11px; font-weight:900; letter-spacing:.18em; text-transform:uppercase; }
+    .section-title { margin:0; color:var(--ink); font-size:clamp(32px,4.7vw,55px); letter-spacing:-.065em; line-height:1.03; }
+    .brief-grid { display:grid; grid-template-columns:1fr .72fr; gap:70px; align-items:start; }
+    .brief-copy p { max-width:700px; color:#506276; font-size:18px; }
+    .brief-copy p:first-of-type { margin-top:23px; }
+    .fact-card { padding:26px; border:1px solid var(--line); border-radius:18px; background:var(--white); box-shadow:var(--shadow); }
+    .fact-row { display:flex; justify-content:space-between; gap:20px; padding:14px 0; border-bottom:1px solid #e6edf3; font-size:12px; }
+    .fact-row:first-child { padding-top:0; }
+    .fact-row:last-child { padding-bottom:0; border-bottom:0; }
+    .fact-row span { color:#7b8da0; }
+    .fact-row strong { color:var(--ink); text-align:right; }
+    .tool-list { display:flex; flex-wrap:wrap; gap:7px; margin-top:23px; }
+    .tool-list span { padding:7px 9px; border-radius:6px; color:#236c85; background:#e7f7fa; font-size:10px; font-weight:900; }
 
-        body {
-            opacity: 1;
-            transition: opacity 0.35s ease;
-        }
+    .dark-block { margin-top:100px; padding:92px max(24px,calc((100vw - var(--max)) / 2)); color:#eefaff; background:#0a1627; }
+    .dark-inner { width:min(100%,var(--max)); margin:auto; }
+    .dark-block .section-label { color:var(--cyan); }
+    .dark-block .section-title { color:#f5fbff; }
+    .workflow { margin-top:47px; display:grid; grid-template-columns:repeat(5,1fr); gap:1px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.12); }
+    .workflow-step { min-height:192px; padding:22px; background:#0a1627; }
+    .workflow-step span { color:var(--cyan); font-size:11px; font-weight:900; letter-spacing:.16em; }
+    .workflow-step h3 { margin:38px 0 8px; color:#f0f9ff; font-size:17px; letter-spacing:-.025em; }
+    .workflow-step p { margin:0; color:#96abc0; font-size:12px; }
 
-        body.loaded {
-            opacity: 1;
-        }
+    .outputs { padding:95px 0; }
+    .output-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:42px; }
+    .output-card { min-height:160px; padding:23px; border:1px solid var(--line); border-radius:17px; background:var(--white); }
+    .output-card span { color:#85a0b3; font-size:10px; font-weight:900; letter-spacing:.15em; }
+    .output-card p { margin:31px 0 0; color:var(--ink); font-size:15px; font-weight:800; line-height:1.3; }
 
-        body.page-out {
-            opacity: 0;
-        }
+    .viewer-section { padding:87px max(24px,calc((100vw - var(--max)) / 2)) 105px; background:#eaf1f6; }
+    .viewer-inner { width:min(100%,var(--max)); margin:auto; }
+    .viewer-heading { display:flex; align-items:end; justify-content:space-between; gap:30px; }
+    .viewer-heading p { max-width:490px; margin:0; color:#66798c; font-size:14px; }
+    .viewer { margin-top:34px; padding:14px; border:1px solid #d3dfe8; border-radius:20px; background:#fff; box-shadow:var(--shadow); }
+    .slide-wrap { position:relative; aspect-ratio:16/9; overflow:hidden; border-radius:12px; background:#08121f; }
+    .slide-wrap iframe { width:100%; height:100%; border:0; display:block; }
+    .download-note { display:flex; align-items:center; justify-content:space-between; gap:20px; margin-top:16px; color:#8092a3; font-size:11px; }
+    .download-note a { color:#087caa; font-weight:900; text-decoration:none; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+    .next-project { padding:80px 24px; color:#f1faff; background:linear-gradient(135deg,#07101d,#122449); }
+    .next-inner { width:min(100%,var(--max)); margin:auto; display:flex; align-items:center; justify-content:space-between; gap:35px; }
+    .next-project p { margin:0 0 10px; color:var(--cyan); font-size:10px; font-weight:900; letter-spacing:.17em; text-transform:uppercase; }
+    .next-project h2 { margin:0; font-size:clamp(28px,4vw,47px); letter-spacing:-.06em; line-height:1; }
+    .next-arrow { width:56px; height:56px; display:grid; place-items:center; border:1px solid rgba(255,255,255,.25); border-radius:50%; color:var(--cyan); font-size:25px; text-decoration:none; transition:.25s ease; }
+    .next-arrow:hover { transform:translateX(5px); border-color:var(--cyan); background:rgba(24,198,232,.1); }
+    footer { padding:25px 24px 34px; color:#8092a8; background:#07101d; font-size:12px; }
+    .footer-inner { width:min(100%,var(--max)); margin:auto; display:flex; justify-content:space-between; gap:20px; }
+    .footer-inner p { margin:0; }
+    .footer-inner a { color:var(--cyan); font-weight:800; text-decoration:none; }
+    .not-found { min-height:65vh; display:grid; place-items:center; padding:130px 24px; text-align:center; }
+    .not-found h1 { font-size:55px; }
 
-        .back {
-            display: inline-block;
-            margin-bottom: 22px;
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        h1 {
-            margin: 0 0 10px;
-            font-size: 34px;
-        }
-
-        p {
-            color: var(--muted);
-            margin-top: 0;
-        }
-
-        .viewer {
-            margin-top: 28px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 18px;
-            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
-        }
-
-        .slide-wrap {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            border-radius: 16px;
-            overflow: hidden;
-            background: #000;
-            --mx: 50%;
-            --my: 50%;
-        }
-
-        .slide-wrap iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-            display: block;
-            background: #111;
-
-            transform: scale(1);
-            transform-origin: var(--mx) var(--my);
-            transition: transform 180ms ease;
-            will-change: transform;
-        }
-
-        /* Pointer zoom */
-        .slide-wrap:hover iframe {
-            transform: scale(1.10);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .slide-wrap iframe { transition: none; }
-            .slide-wrap:hover iframe { transform: none; }
-        }
-    </style>
+    @media (max-width:900px) { .hero-grid,.brief-grid { grid-template-columns:1fr; gap:48px; } .hero-media { max-width:560px; } .workflow { grid-template-columns:repeat(2,1fr); } .output-grid { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:620px) { .nav-inner { width:min(100% - 30px,var(--max)); } .brand-copy { display:none; } .case-hero { padding:122px 18px 70px; } .content { padding:70px 18px 0; } h1 { font-size:clamp(42px,14vw,72px); } .hero-summary { font-size:16px; } .hero-media { aspect-ratio:1.2; } .dark-block,.viewer-section { padding-left:18px; padding-right:18px; } .dark-block { margin-top:70px; padding-top:70px; } .workflow { grid-template-columns:1fr; } .workflow-step { min-height:0; } .workflow-step h3 { margin-top:22px; } .output-grid { grid-template-columns:1fr; } .viewer-heading,.next-inner,.footer-inner { align-items:flex-start; flex-direction:column; } .download-note { align-items:flex-start; flex-direction:column; } .next-arrow { align-self:flex-end; } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition-duration:.01ms!important; } }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <a class="back" href="index.html#work" id="backLink">← Back to Projects</a>
-        <h1 id="projectTitle">Project Presentation</h1>
-        <p id="projectDesc">Presentation preview.</p>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <header class="case-nav"><div class="nav-inner"><a class="brand" href="index.html#top"><span class="brand-mark">DB</span><span class="brand-copy">Devanshu Borase</span></a><a class="back-link" href="index.html#work">← Back to work library</a></div></header>
+  <main id="caseStudy"></main>
+  <footer><div class="footer-inner"><p>© <span id="year">2026</span> Devanshu Borase · Project case study</p><a href="index.html#contact">Start a conversation ↗</a></div></footer>
 
-        <div class="viewer">
-            <div class="slide-wrap" id="slideWrap">
-                <iframe id="slideFrame" src="" title="Project presentation viewer" loading="lazy" allowfullscreen></iframe>
+  <script src="portfolio-data.js"></script>
+  <script>
+    const projects = window.portfolioProjects || [];
+    const params = new URLSearchParams(window.location.search);
+    const requestedId = params.get('name');
+    const projectIndex = Math.max(0, projects.findIndex(item => item.id === requestedId));
+    const project = projects[projectIndex];
+    const caseStudy = document.getElementById('caseStudy');
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    if (!project) {
+      document.title = 'Project not found | Devanshu Borase';
+      caseStudy.innerHTML = '<section class="not-found"><div><p class="section-label">Portfolio project</p><h1>Project not found.</h1><p>Return to the work library to choose another case study.</p><a class="button button-primary" href="index.html#work">Back to all work →</a></div></section>';
+    } else {
+      document.title = `${project.title} | Devanshu Borase`;
+      const nextProject = projects[(projectIndex + 1) % projects.length];
+      caseStudy.innerHTML = `
+        <section class="case-hero" aria-labelledby="projectTitle">
+          <div class="hero-inner">
+            <p class="breadcrumb">${project.categoryLabel} &nbsp;·&nbsp; ${project.discipline}</p>
+            <div class="hero-grid">
+              <div>
+                <h1 id="projectTitle">${project.title}</h1>
+                <p class="hero-summary">${project.summary}</p>
+                <div class="hero-actions">
+                  <a class="button button-primary" href="#presentation">View original deck <span aria-hidden="true">↓</span></a>
+                  <a class="button button-ghost" href="${project.presentation}" download>Download presentation <span aria-hidden="true">↗</span></a>
+                </div>
+                <div class="hero-facts">${project.tools.map(tool => `<span class="hero-fact">${tool}</span>`).join('')}</div>
+              </div>
+              <div class="hero-media"><img src="${project.thumbnail}" alt="${project.title} project visual"><div class="media-caption"><div><span>Project visual</span><strong>${project.deck}</strong></div><b>${String(projectIndex + 1).padStart(2, '0')}</b></div></div>
             </div>
-        </div>
-    </div>
+          </div>
+        </section>
+        <section class="content"><div class="content-inner">
+          <div class="brief-grid">
+            <div class="brief-copy"><p class="section-label">Project brief</p><h2 class="section-title">A closer look at the design intent.</h2><p>${project.objective}</p><p>This case study is a concise web translation of the original presentation. The full deck remains available below so the work can be reviewed in its original sequence.</p></div>
+            <aside class="fact-card"><div class="fact-row"><span>Discipline</span><strong>${project.discipline}</strong></div><div class="fact-row"><span>Project type</span><strong>${project.categoryLabel}</strong></div><div class="fact-row"><span>Original deck</span><strong>${project.deck}</strong></div><div class="fact-row"><span>Portfolio position</span><strong>${String(projectIndex + 1).padStart(2, '0')} / ${String(projects.length).padStart(2, '0')}</strong></div><div class="tool-list">${project.tools.map(tool => `<span>${tool}</span>`).join('')}</div></aside>
+          </div>
+        </div></section>
+        <section class="dark-block"><div class="dark-inner"><p class="section-label">Design sequence</p><h2 class="section-title">How the work comes together.</h2><div class="workflow">${project.workflow.map((step, index) => `<article class="workflow-step"><span>0${index + 1}</span><h3>${step}</h3><p>${index === 0 ? 'Start with the intent and the inputs.' : index === project.workflow.length - 1 ? 'Make the result ready to review.' : 'Build the next decision on a controlled foundation.'}</p></article>`).join('')}</div></div></section>
+        <section class="content"><div class="content-inner outputs"><p class="section-label">What the deck documents</p><h2 class="section-title">The visible result and the hidden logic.</h2><div class="output-grid">${project.outputs.map((output, index) => `<article class="output-card"><span>DELIVERABLE 0${index + 1}</span><p>${output}</p></article>`).join('')}</div></div></section>
+        <section class="viewer-section" id="presentation"><div class="viewer-inner"><div class="viewer-heading"><div><p class="section-label">Original presentation</p><h2 class="section-title">Open the work as it was made.</h2></div><p>Use the embedded viewer to move through the original slides. If the viewer is unavailable, download the source presentation and open it locally.</p></div><div class="viewer"><div class="slide-wrap"><iframe title="${project.title} original presentation" src="${window.presentationViewerUrl(project.presentation)}" loading="lazy" allowfullscreen></iframe></div><div class="download-note"><span>Presentation viewer · external document preview</span><a href="${project.presentation}" download>Download ${project.presentation.split('/').pop()} ↗</a></div></div></div></section>
+        <section class="next-project"><div class="next-inner"><div><p>Next project in the archive</p><h2>${nextProject.title}</h2></div><a class="next-arrow" href="project.html?name=${nextProject.id}" aria-label="Open next project">→</a></div></section>
+      `;
+    }
 
-    <script>
-        const data = {
-            bumper: {
-                title: 'Automotive Front Bumper Fascia',
-                desc: 'Front bumper fascia workflow from Class-A surface refinement through closed-volume development and clearance validation.',
-                slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/Front%20Bumper%20%20Design%20Report.pptx&embedded=true'
-            },
-           bpillar: {
-                title: 'Automotive B-Pillar Trim Design',
-                desc: 'A-, B-, and C-surface development for an automotive trim component, including B-side attachment features and surrounding-part packaging.',
-                slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/B_PILLER.pptx&embedded=true'
-            },
-             cupholder: {
-                title: 'Automotive Cup Holder Trim Design',
-                desc: 'Automotive cup-holder trim developed through surface refinement, attachment-feature detailing, and packaging with surrounding vehicle parts.',
-                slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/CUP_HOLDER.pptx&embedded=true'
-            },
-            air: {
-                title: 'Airbag Cover Design',
-                desc: 'Airbag-cover workflow focused on Class-A surface development, closed-volume creation, and clearance-line definition.',
-                slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/Airbag%20Cover%20Design%20Report.pptx&embedded=true'
-            },
-            feature: {
-                title: 'B Surface Features Report',
-                desc: 'B-side feature development including clip towers and supporting geometry for a plastic automotive component.',
-                slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/Clip_Tower.pptx&embedded=true'
-            },
-            fbcov: {
-                title: 'Fuse Box Cover Design Report',
-                desc: 'Fuse-box cover component developed from Class-A surfaces through closed volume with clearance and attachment details.',
-                slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/Fuseboxcov.pptx&embedded=true'
-            },
-            centralbezel: {
-                title: 'Center Bezel Design Report',
-                desc: 'Center bezel trim developed from surface inputs into a closed volume with defined clearance and attachment details.',
-                slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/Center%20Bezel%20Design%20Report.pptx&embedded=true'
-            },
-            ac: {
-                title: 'AC Front Control Panel Design Report',
-                desc: 'AC front control panel designed as a plastic trim component with surface development, closed-volume construction, and clearance definition.',
-                slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/AC%20Front%20Control%20Panel%20Design%20Report.pptx&embedded=true'
-            },
-            autoswitch: {
-                title: 'Auto Switch Design Report',
-                desc: 'Auto-switch component modeled from Class-A surfaces through closed volume with defined clearance lines and supporting details.',
-                slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/Auto%20Switch%20Design%20Report.pptx&embedded=true'
-            },
-            central: {
-                title: 'Automotive Modeling Report',
-                desc: 'Advanced surfacing and 3D geometric modeling for vehicle components and body panels using a structured automotive design workflow.',
-                slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/modeling.pptx&embedded=true'
-            },
-            automotive: {
-                title: 'High-Performance Automotive Modeling',
-                desc: 'Advanced surfacing and 3D geometric modeling for vehicle components and body panels using a structured automotive design workflow.',
-                slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/modeling.pptx&embedded=true'
-            },
-            beproject: {
-                title: 'BE Project- Pneumatic Slag Removal Mechanism for CNC System',
-                desc: 'Detailed 3D CAD modeling of a pneumatic blade system, showcasing the mechanical linkages and assembly for CNC bed maintenance.',
-                slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/beproject.pptx&embedded=true'
-            },
-            sidetrim: {
-                title: 'Seat Recliner Side Trim Design Report',
-                desc: 'Seat recliner side trim developed as a plastic component with surface refinement, closed-volume construction, and clearance details.',
-                slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/Seat%20Recliner%20Side%20Trim%20Design%20Report.pptx&embedded=true'
-            },
-            support: {
-                title: 'Switch Support Design Report',
-                desc: 'Plastic switch-support component modeled from surface inputs through closed volume with manufacturing-oriented clearance features.',
-                slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/Switch%20Support%20Design%20Report.pptx&embedded=true'
-            },
-            fbcover: {
-                title: 'Fuse Box Cover Design Report',
-                desc: 'Fuse-box cover component developed from Class-A surfaces through closed volume with clearance and attachment details.',
-                slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/fusebox.pptx&embedded=true'
-            },
-            thermal: {
-                title: 'Thermal Optimization of Truck Wheel Rim',
-                desc: 'CFD-based thermal analysis and wheel-rim optimization focused on improving heat dissipation performance.',
-                slidesUrl: 'https://docs.google.com/gview?url=https://devborase.github.io/dev-portfolio/ppt/tim.pptx&embedded=true'
-            }
-        };
-
-        function renderProject() {
-            const params = new URLSearchParams(window.location.search);
-            const name = params.get('name');
-            const current = data[name] || { title: 'Project Presentation', desc: 'Presentation preview.', slidesUrl: '' };
-
-            document.getElementById('projectTitle').textContent = current.title;
-            document.getElementById('projectDesc').textContent = current.desc;
-            document.title = `${current.title} | Devanshu Borase`;
-            document.getElementById('slideFrame').src = current.slidesUrl;
-        }
-
-        window.addEventListener('load', () => {
-            renderProject();
-            document.body.classList.add('loaded');
-        });
-
-        document.getElementById('backLink').addEventListener('click', function (e) {
-            e.preventDefault();
-            document.body.classList.add('page-out');
-            setTimeout(() => {
-                window.location.href = this.href;
-            }, 250);
-        });
-
-        // Smooth pointer zoom origin tracking
-        (function () {
-            const wrap = document.getElementById('slideWrap');
-            const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
-            if (!wrap) return;
-
-            let mx = 0.5, my = 0.5, tx = 0.5, ty = 0.5;
-            let raf = 0;
-
-            function tick() {
-                mx += (tx - mx) * 0.12;
-                my += (ty - my) * 0.12;
-                wrap.style.setProperty('--mx', (mx * 100).toFixed(2) + '%');
-                wrap.style.setProperty('--my', (my * 100).toFixed(2) + '%');
-                raf = requestAnimationFrame(tick);
-            }
-
-            wrap.addEventListener('mouseenter', () => {
-                if (!raf) raf = requestAnimationFrame(tick);
-            });
-
-            wrap.addEventListener('mousemove', (e) => {
-                const r = wrap.getBoundingClientRect();
-                tx = clamp((e.clientX - r.left) / r.width, 0, 1);
-                ty = clamp((e.clientY - r.top) / r.height, 0, 1);
-            });
-
-            wrap.addEventListener('mouseleave', () => {
-                tx = 0.5; ty = 0.5;
-                if (raf) {
-                    cancelAnimationFrame(raf);
-                    raf = 0;
-                }
-                wrap.style.setProperty('--mx', '50%');
-                wrap.style.setProperty('--my', '50%');
-            });
-        })();
-    </script>
-    <script>
-      window.onpageshow = function(event) {
-        if (event.persisted) {
-          window.location.reload();
-        }
-      };
-    </script>
+    const progress = document.getElementById('progress');
+    function updateProgress() {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = `${scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0}%`;
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  </script>
 </body>
 </html>
